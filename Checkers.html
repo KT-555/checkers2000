@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Checkers</title>
+    <script type="text/javascript">
+
+        var boardImage = new Image();
+        boardImage.src = "Assets/board.png";
+        
+        var player1Image = new Image();
+        player1Image.src = "Assets/redPiece.png";
+        
+        var player2Image = new Image();
+        player2Image.src = "Assets/blackPiece.png";
+
+        var playAgainImage = new Image();
+        playAgainImage.src = "Assets/playAgain.png";
+
+        var redWinsImage = new Image();
+        redWinsImage.src = "Assets/redWins.png";
+
+        var blackWinsImage = new Image();
+        blackWinsImage.src = "Assets/blackWins.png";
+
+        var blackQuad = new Image();
+        blackQuad.src = "Assets/blackQuad.png"
+
+        //var audio = new Audio('Assets/checkersPiece.m4a');
+        //audio.play();
+        
+        function movePiece() {
+            
+       
+        
+        
+        
+        
+        
+        }
+        
+        function draw() {
+        var canvas = document.getElementById('tutorial');
+        if (canvas.getContext) {
+            var ctx = canvas.getContext('2d');
+            ctx.drawImage(boardImage,0,0);
+        }
+      }
+        
+        
+        
+        
+        window.onload = function() {
+          draw();
+          let canvasElem = document.getElementById("tutorial"); 
+
+      }
+    </script>
+    <style type="text/css">
+      canvas { border: 1px solid black; }
+    </style>
+  </head>
+  <body>
+    <canvas id="tutorial" width="537" height="538"></canvas>
+  </body>
+</html>
