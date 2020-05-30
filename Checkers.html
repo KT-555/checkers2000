@@ -5,16 +5,14 @@
     <title>Checkers</title>
     <script type="text/javascript">
 
-        var selection;
-        var redPieces = [-45,440,87,440,220,440,350,440,20,375,153,375,285,375,415,375,-45,305,87,305,220,305,350,305];
-        var blackPieces = [-145,-210,-13,-210,120,-210,250,-210,-212,-145,-80,-145,55,-145,185,-145,-145,-80,-13,-80,120,-80,250,-80];
-         
+        var gameBoard = new Array(64);
         
         const state = {
-            INITIAL: "initial"
+            INITIAL: "initial",
+            REDMOVE: "redmove",
+            BLACKMOVE: "blackmove"
             
         }
-        var gameState = state.INITIAL;
         
         var boardImage = new Image();
         boardImage.src = "Assets/board.png";
@@ -40,6 +38,21 @@
         //var audio = new Audio('Assets/checkersPiece.m4a');
         //audio.play();
         
+        function initializeBoard() {
+            for (var i = 0; i < 24; i+=2) {
+                    gameBoard[i] = 0;
+                    gameBoard[i+1] = 1;
+                }
+    
+                for (var i = 63; i > 40; i-=2) {
+                    gameBoard[i] = 2
+                    gameBoard[i-1] = 0
+                }
+                console.log(gameBoard)
+            
+        }
+        
+        
         function movePiece() {
             
         
@@ -48,10 +61,7 @@
         
         
         function selectPiece() {
-            if (selection == redPieces[1]) {
-                
-            }
-            
+       
         }
         
         
@@ -61,14 +71,6 @@
             let y = event.clientY - rect.top; 
             console.log("Coordinate x: " + x,  
                         "Coordinate y: " + y);
-            
-            if (gameState == state.INITIAL) {
-                let col = parseInt(x / 100);
-                let row = parseInt(y / 100);
-                console.log("c:", col);
-                console.log("r:", row);
-                selectPiece();
-            }
         }
 
         
@@ -77,26 +79,22 @@
             if (canvas.getContext) {
                 var ctx = canvas.getContext('2d');
                 ctx.drawImage(boardImage,0,0);
-                //ctx.fillRect(0, 0, 726, 626);
             }
-            //initial board load
-            if (gameState == state.INITIAL) {
-                for (var i = 0; i < redPieces.length; i+=2) {
-                    var x = redPieces[i];
-                    var y = redPieces[i+1];
-                    ctx.drawImage(redPiece,x,y);
+                
+            for (var i=0; i<gameBoard.length; i++) {
+                    if (gameBoard[i] == 1) {
+                        ctx.drawImage(blackPiece,0,0);
+                    }
+                    
+                    else if (gameBoard[i] == 2) {
+                        ctx.drawImage(redPiece,0,0)
+                    }
                 }
-                for (var i = 0; i < blackPieces.length; i+=2) {
-                    var x = blackPieces[i];
-                    var y = blackPieces[i+1];
-                    ctx.drawImage(blackPiece,x,y);
-                }
-            }
         }
-        
-        
-        
+
         window.onload = function() {
+            draw();
+            initializeBoard();
             draw();
             let canvasElem = document.getElementById("tutorial"); 
             canvasElem.addEventListener("mousedown", function(evt) { 
