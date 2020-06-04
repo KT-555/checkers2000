@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8"/>
-    <title>Checkers</title>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Checkers 2000</title>
+        <link rel="shortcut icon" type="image/jpg" href="../checkers2000/Assets/favicon.png"/>
+        <link rel="stylesheet" href="style.css">
     <script type="text/javascript">
+    
+
 
         var gameBoard = new Array();
+        var blackX = -235;
+        var blackY = -235;
+        var redX = -235;
+        var redY = 200;
         
         const state = {
             INITIAL: "initial",
@@ -49,7 +57,7 @@
                     gameBoard[i-1] = 0
                 }
                 console.log(gameBoard)
-            draw();
+                draw();
                 
             
             
@@ -74,20 +82,16 @@
                 var ctx = canvas.getContext('2d');
             }
             
-                if (color === 'black') {
-                    var blackX = 2;
-                    var blackY = 2;
+                if (color == 'black') {
                     ctx.drawImage(blackPiece,blackX,blackY);
-                    blackX += 12;
-                    blackY += 12;
+                    blackX += 20;
+                    blackY += 20;
             }
 
-                else if (color === 'red') {
-                    var redX = 8;
-                    var redY = 475;
+                else if (color == 'red') {
                     ctx.drawImage(redPiece,redX,redY);
-                    redX +=20;
-                    redY +=20;
+                    redX += 20;
+                    redY += 20;
             }
         }
         
@@ -108,33 +112,33 @@
                 ctx.drawImage(boardImage,0,0);
             }
                 
-                for (let i=0; i<gameBoard.length; i++) {
-                    if (gameBoard[i] == 1) {
-                        var color = 'black';
-                        drawPiece(i, color);
-                    }
-
-                    else if (gameBoard[i] == 2) {
-                        var color = 'red';
-                        drawPiece(i, color);
-                    }
+            for (let i=0; i<gameBoard.length; i++) {
+                if (gameBoard[i] == 1) {
+                    var color = 'black'
+                    drawPiece(gameBoard[i], color);
                 }
+
+                else if (gameBoard[i] == 2) {
+                    color = 'red'
+                    drawPiece(gameBoard[i], color);
+                }
+            }
         }
 
         window.onload = function() {
-            draw();
             initializeBoard();
+            draw();
             let canvasElem = document.getElementById("tutorial"); 
             canvasElem.addEventListener("mousedown", function(evt) { 
                 getMousePosition(canvasElem, evt);
             });
         }
     </script>
-    <style type="text/css">
-      canvas { border: 1px solid black; }
+    <style>
+        canvas { border: 20px solid black; }
     </style>
   </head>
   <body>
-    <canvas id="tutorial" width="537" height="538"></canvas>
+    <canvas id="tutorial" width="500" height="500"></canvas>
   </body>
 </html>
