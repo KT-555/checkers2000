@@ -76,23 +76,22 @@
 
 
         function drawPiece(index, boardSize, color) {
+            x = index * boardSize / 400;
+            y = index - 1;
+            
             var canvas = document.getElementById('tutorial');
             if (canvas.getContext) {
                 var ctx = canvas.getContext('2d');
-            }
-            if (color == 'black') {
-                console.log("black index", index);
-                x = index * boardSize / 400;
-                y = index - 1;
-                console.log(x,y);
-                ctx.drawImage(blackPiece,x,y);
+                if (color == 'black') {
+                    console.log("black index", index);
+                    console.log(x,y);
+                    ctx.drawImage(blackPiece,x,y);
 
-            } else if (color == 'red') {
-                console.log("red index", index);
-                x = index * boardSize / 400;
-                y = index - 1;
-                console.log(x,y);
-                ctx.drawImage(redPiece,x,y);
+                } else if (color == 'red') {
+                    console.log("red index", index);
+                    console.log(x,y);
+                    ctx.drawImage(redPiece,x,y);
+                }
 
             }
         }
