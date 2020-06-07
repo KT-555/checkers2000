@@ -18,8 +18,8 @@
 
         var index = 0;
         var boardSize = 400;
-        var x = 1;
-        var y = 1;
+        var x = 0;
+        var y = 0;
 
         var boardImage = new Image();
         boardImage.src = "Assets/board.png";
@@ -75,9 +75,9 @@
         }
 
 
-        function drawPiece(index, boardSize,i) {
+        function drawPiece(i) {
             x = index * boardSize / 400;
-            y = index * index;
+            y = index / 8;
             
             var canvas = document.getElementById('tutorial');
             if (canvas.getContext) {
@@ -118,12 +118,12 @@
             for (let i = 0; i < gameBoard.length; i++) {
                 if (gameBoard[i] === 1) {
                     //console.log("1",index,x,y)
-                    drawPiece(index, boardSize,i);
+                    drawPiece(i);
                     index += 1
                     //console.log("1",index,x,y)
                 } else if (gameBoard[i] === 2) {
                    // console.log("2",index,x,y)
-                    drawPiece(index, boardSize, i);
+                    drawPiece(i);
                     index += 1
                     //console.log("2.1",index,x,y)
                 } else if (gameBoard[i] === 0) {
