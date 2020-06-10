@@ -16,7 +16,6 @@
         }
 
 
-        var index = 0;
         var boardSize = 400;
         var x = 1;
         var y = 1;
@@ -76,19 +75,17 @@
 
 
         function drawPiece(boardPosition) {
-            x = boardSize / 8;
-            y = x - 1;
+            x = boardPosition / boardSize;
+            y = boardPosition / 8;
             
             var canvas = document.getElementById('tutorial');
             if (canvas.getContext) {
                 var ctx = canvas.getContext('2d');
                 if (gameBoard[boardPosition] == 1) {
-                    console.log("black index", index);
                     console.log(x,y);
                     ctx.drawImage(blackPiece,x,y);
 
                 } else if (gameBoard[boardPosition] == 2) {
-                    console.log("red index", index);
                     console.log(x,y);
                     ctx.drawImage(redPiece,x,y);
                 }
@@ -119,16 +116,13 @@
                 if (gameBoard[i] === 1) {
                     //console.log("1",index,x,y)
                     drawPiece(i);
-                    index += 1
                     //console.log("1",index,x,y)
                 } else if (gameBoard[i] === 2) {
                    // console.log("2",index,x,y)
                     drawPiece(i);
-                    index += 1
                     //console.log("2.1",index,x,y)
                 } else if (gameBoard[i] === 0) {
                     //console.log("0",index,x,y)
-                    index += 1
                     //console.log("0.1",index,x,y)
                 }
             }
