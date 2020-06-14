@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="style.css">
     <script type="text/javascript">
         var gameBoard = new Array();
-
+        var xArray1 = [0,8,16,24,32,40,48,56];
+        var xArray2 = [1,9,17,25,33,41,49,57];
+        
         const state = {
             INITIAL: "initial",
             REDMOVE: "redmove",
@@ -78,46 +80,49 @@
             if (boardPosition >=0 && boardPosition <=7) {
                 y = 0;
                 x = boardPosition * 49;
-                console.log("X: ", x, "Y: ", y)
+                console.log("Y: ", y);
             } else if (boardPosition >=8 && boardPosition <=15) {
                 y = 50;
-                console.log("X: ", x, "Y: ", y)
-                x = boardPosition;
+                console.log("Y: ", y);
             } else if (boardPosition >=16 && boardPosition <=23) {
                 y = 100;
-                console.log("X: ", x, "Y: ", y)
-                x = boardPosition;
+                console.log("Y: ", y);
             } else if (boardPosition >=24 && boardPosition <=31) {
                 y = 150;
-                console.log("X: ", x, "Y: ", y)
-                x = boardPosition;
+                console.log("Y: ", y);
             } else if (boardPosition >=32 && boardPosition <=39) {
                 y = 200;
-                console.log("X: ", x, "Y: ", y)
-                x = boardPosition;
+                console.log("Y: ", y);
             } else if (boardPosition >=40 && boardPosition <=47) {
                 y = 250;
-                console.log("X: ", x, "Y: ", y)
-                x = boardPosition;
+                console.log("Y: ", y);
             } else if (boardPosition >=48 && boardPosition <=55) {
                 y = 300;
-                console.log("X: ", x, "Y: ", y)
-                x = boardPosition;
+                console.log("Y: ", y);
             } else if (boardPosition >=56 && boardPosition <=63) {
                 y = 350;
-                console.log("X: ", x, "Y: ", y)
-                x = boardPosition;
+                console.log("Y: ", y);
             }
+            
+            
+            if (xArray1.includes(boardPosition)) {
+                x = 1
+                console.log("X: ",x);
+            } else if (xArray2.includes(boardPosition)) {
+                x = 2
+                console.log("X: ",x);
+            }
+            
 
 
             var canvas = document.getElementById('tutorial');
             if (canvas.getContext) {
                 var ctx = canvas.getContext('2d');
                 if (gameBoard[boardPosition] === 1) {
-                    ctx.drawImage(blackPiece, x, y);
+                    ctx.drawImage(blackPiece,x,y);
 
                 } else if (gameBoard[boardPosition] === 2) {
-                    ctx.drawImage(redPiece, x, y);
+                    ctx.drawImage(redPiece,x,y);
                 }
             }
         }
