@@ -15,7 +15,7 @@
             BLACKMOVE: "blackmove"
         }
 
-        var boardSize = 400;
+        var boardSize = 450;
         var x;
         var y;
 
@@ -75,64 +75,50 @@
 
         function drawPiece(boardPosition) {
             console.log("Board Position: ", boardPosition);
-            if (boardPosition === 0 || 1 || 2 || 3 || 4 || 5 || 6 || 7) {
+            if (boardPosition >=0 && boardPosition <=7) {
                 y = 0;
-                x = boardPosition / boardSize;
+                x = boardPosition * 49;
                 console.log("X: ", x, "Y: ", y)
-            }
-
-            else if (boardPosition === 8 || 9 || 10 || 11 || 12 || 13 || 14 || 15) {
-                y = 10;
-                console.log("X: ", x, "Y: ", y)
-                x = boardPosition / boardSize;
-            }
-            
-            else if (boardPosition === 16 || 17 || 18 || 19 || 20 || 21 || 22 || 23) {
-                y = 20;
-                console.log("X: ", x, "Y: ", y)
-                x = boardPosition / boardSize;
-            }
-            
-            else if (boardPosition === 24 || 25 || 26 || 27 || 28 || 29 || 30 || 31) {
-                y = 30;
-                console.log("X: ", x, "Y: ", y)
-                x = boardPosition / boardSize;
-            }
-            
-            else if (boardPosition === 32 || 33 || 34 || 35 || 36 || 37 || 38 || 39) {
-                y = 40;
-                console.log("X: ", x, "Y: ", y)
-                x = boardPosition / boardSize;
-            }
-            
-            else if (boardPosition === 40 || 41 || 42 || 43 || 44 || 45 || 46 || 47) {
+            } else if (boardPosition >=8 && boardPosition <=15) {
                 y = 50;
                 console.log("X: ", x, "Y: ", y)
-                x = boardPosition / boardSize;
-            }
-            
-            else if (boardPosition === 48 || 49 || 50 || 51 || 52 || 53 || 54 || 55) {
-                y = 60;
+                x = boardPosition;
+            } else if (boardPosition >=16 && boardPosition <=23) {
+                y = 100;
                 console.log("X: ", x, "Y: ", y)
-                x = boardPosition / boardSize;
+                x = boardPosition;
+            } else if (boardPosition >=24 && boardPosition <=31) {
+                y = 150;
+                console.log("X: ", x, "Y: ", y)
+                x = boardPosition;
+            } else if (boardPosition >=32 && boardPosition <=39) {
+                y = 200;
+                console.log("X: ", x, "Y: ", y)
+                x = boardPosition;
+            } else if (boardPosition >=40 && boardPosition <=47) {
+                y = 250;
+                console.log("X: ", x, "Y: ", y)
+                x = boardPosition;
+            } else if (boardPosition >=48 && boardPosition <=55) {
+                y = 300;
+                console.log("X: ", x, "Y: ", y)
+                x = boardPosition;
+            } else if (boardPosition >=56 && boardPosition <=63) {
+                y = 350;
+                console.log("X: ", x, "Y: ", y)
+                x = boardPosition;
             }
-            
-            else if (boardPosition === 56 || 57 || 58 || 59 || 60 || 61 || 62 || 63) {
-                y = 70;
-                console.log("Y: ", y)
-                x = boardPosition / boardSize;
-            }
-                
-            
+
+
             var canvas = document.getElementById('tutorial');
             if (canvas.getContext) {
                 var ctx = canvas.getContext('2d');
-                    if (gameBoard[boardPosition] === 1) {
-                        ctx.drawImage(blackPiece,x,y);
+                if (gameBoard[boardPosition] === 1) {
+                    ctx.drawImage(blackPiece, x, y);
 
-                    } else if (gameBoard[boardPosition] === 2) {
-                        ctx.drawImage(redPiece,x,y);
-                    }
+                } else if (gameBoard[boardPosition] === 2) {
+                    ctx.drawImage(redPiece, x, y);
+                }
             }
         }
 
@@ -148,8 +134,7 @@
                     drawPiece(boardPosition);
                 } else if (gameBoard[boardPosition] === 2) {
                     drawPiece(boardPosition);
-                } else if (gameBoard[boardPosition] === 0) {
-                }
+                } else if (gameBoard[boardPosition] === 0) {}
             }
         }
 
