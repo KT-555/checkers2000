@@ -8,8 +8,22 @@
     <link rel="stylesheet" href="style.css">
     <script type="text/javascript">
         var gameBoard = new Array();
-        var xArray1 = [0,8,16,24,32,40,48,56];
-        var xArray2 = [1,9,17,25,33,41,49,57];
+        var xArray0 = [8,40,56];
+        //var xArray1 = [0,16,48]; 
+        var xArray2 = [1,17,49];
+        var xArray3 = [9,41,57];
+        var xArray4 = [10,26,34,42,58];
+        var xArray5 = [2,18,50];
+        var xArray6 = [3,19,27,35,51];
+        var xArray7 = [11,43,59];
+        var xArray8 = [12,28,36,44,60];
+        var xArray9 = [];
+        var xArray10 = [5,21,29,37,53];
+        var xArray11 = [];
+        var xArray12 = [14,30,38,46,62];
+        var xArray13 = [];
+        var xArray14 = [7,23,31,39,55];
+        var xArray15 = [];
         
         const state = {
             INITIAL: "initial",
@@ -17,7 +31,7 @@
             BLACKMOVE: "blackmove"
         }
 
-        var boardSize = 450;
+        var boardSize = 400;
         var x;
         var y;
 
@@ -46,7 +60,17 @@
         //audio.play();
 
         function initializeBoard() {
-            for (var i = 0; i < 24; i += 2) {
+            for (var i = 0; i < 7; i += 2) {
+                gameBoard[i] = 0;
+                gameBoard[i + 1] = 1;
+            }
+            
+            for (var i = 8; i < 15; i += 2) {
+                gameBoard[i] = 1;
+                gameBoard[i + 1] = 0;
+            }
+            
+            for (var i = 16; i < 24; i += 2) {
                 gameBoard[i] = 0;
                 gameBoard[i + 1] = 1;
             }
@@ -79,7 +103,6 @@
             console.log("Board Position: ", boardPosition);
             if (boardPosition >=0 && boardPosition <=7) {
                 y = 0;
-                x = boardPosition * 49;
                 console.log("Y: ", y);
             } else if (boardPosition >=8 && boardPosition <=15) {
                 y = 50;
@@ -105,11 +128,41 @@
             }
             
             
-            if (xArray1.includes(boardPosition)) {
-                x = 1
+            if (xArray0.includes(boardPosition)) {
+                x = 0;
                 console.log("X: ",x);
+            //} else if (xArray1.includes(boardPosition)) {
+            //    x = 50;
+            //    console.log("X: ",x);
             } else if (xArray2.includes(boardPosition)) {
-                x = 2
+                x = 50;
+                console.log("X: ",x);
+            } else if (xArray3.includes(boardPosition)) {
+                x = 50;
+                console.log("X: ",x);
+            } else if (xArray4.includes(boardPosition)) {
+                x = 100;
+                console.log("X: ",x);
+            } else if (xArray5.includes(boardPosition)) { 
+                x = 150;
+                console.log("X: ",x);
+            } else if (xArray6.includes(boardPosition)) { 
+                x = 150;
+                console.log("X: ",x);
+            } else if (xArray7.includes(boardPosition)) { 
+                x = 150;
+                console.log("X: ",x);
+            } else if (xArray8.includes(boardPosition)) {
+                x = 200;
+                console.log("X: ",x);
+            } else if (xArray10.includes(boardPosition)) {
+                x = 250;
+                console.log("X: ",x);
+            } else if (xArray12.includes(boardPosition)) {
+                x = 300;
+                console.log("X: ",x);
+            } else if (xArray14.includes(boardPosition)) {
+                x = 350;
                 console.log("X: ",x);
             }
             
@@ -125,6 +178,14 @@
                     ctx.drawImage(redPiece,x,y);
                 }
             }
+        }
+        
+        function getMousePosition(canvas, event) { 
+            let rect = canvas.getBoundingClientRect(); 
+            let x = event.clientX - rect.left; 
+            let y = event.clientY - rect.top; 
+            console.log("Coordinate x: " + x,  
+                        "Coordinate y: " + y);
         }
 
         function draw() {
