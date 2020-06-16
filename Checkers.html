@@ -1,27 +1,47 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8"/>
-    <title>Checkers</title>
-    <script type="text/javascript">
 
-        var selection;
-        var redPieces = [-45,440,87,440,220,440,350,440,20,375,153,375,285,375,415,375,-45,305,87,305,220,305,350,305];
-        var blackPieces = [-145,-210,-13,-210,120,-210,250,-210,-212,-145,-80,-145,55,-145,185,-145,-145,-80,-13,-80,120,-80,250,-80];
-         
+<head>
+    <meta charset="utf-8" />
+    <title>C2000</title>
+    <link rel="shortcut icon" type="image/jpg" href="../checkers2000/Assets/favicon.png" />
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript">
         
+        var gameBoard = new Array();
+        
+        var xArray0 = [8, 40, 56];
+        var xArray2 = [1, 17, 49];
+        var xArray4 = [10, 42, 58];
+        var xArray6 = [3, 19, 51];
+        var xArray8 = [12, 44, 60];
+        var xArray10 = [5, 21, 53];
+        var xArray12 = [14, 46, 62];
+        var xArray14 = [7, 23, 55];
+        
+        var redPieces = [];
+        var blackPieces = [];
+
         const state = {
-            INITIAL: "initial"
-            
+            INITIAL: "initial",
+            REDMOVE: "redmove",
+            BLACKMOVE: "blackmove"
         }
-        var gameState = state.INITIAL;
+
+        var boardSize = 400;
+        var x;
+        var y;
+        var x1;
+        var y1;
         
+        var gameState = state.INITIAL;
+
         var boardImage = new Image();
         boardImage.src = "Assets/board.png";
-        
+
         var redPiece = new Image();
         redPiece.src = "Assets/redPiece.png";
-        
+
         var blackPiece = new Image();
         blackPiece.src = "Assets/blackPiece.png";
 
@@ -39,76 +59,179 @@
 
         //var audio = new Audio('Assets/checkersPiece.m4a');
         //audio.play();
-        
-        function movePiece() {
-            
-        
-        }
-        
-        
-        
-        function selectPiece() {
-            if (selection == redPieces[1]) {
-                
+
+        function initializeBoard() {
+            for (var i = 0; i < 7; i += 2) {
+                gameBoard[i] = 0;
+                gameBoard[i + 1] = 1;
             }
-            
-        }
-        
-        
-        function getMousePosition(canvas, event) { 
-            let rect = canvas.getBoundingClientRect(); 
-            let x = event.clientX - rect.left; 
-            let y = event.clientY - rect.top; 
-            console.log("Coordinate x: " + x,  
-                        "Coordinate y: " + y);
-            
-            if (gameState == state.INITIAL) {
-                let col = parseInt(x / 100);
-                let row = parseInt(y / 100);
-                console.log("c:", col);
-                console.log("r:", row);
-                selectPiece();
+
+            for (var i = 8; i < 15; i += 2) {
+                gameBoard[i] = 1;
+                gameBoard[i + 1] = 0;
             }
+
+            for (var i = 16; i < 24; i += 2) {
+                gameBoard[i] = 0;
+                gameBoard[i + 1] = 1;
+            }
+
+            for (var i = 63; i > 40; i -= 2) {
+                gameBoard[i] = 0
+                gameBoard[i - 1] = 2
+            }
+
+            for (var i = 63; i > 48; i -= 2) {
+                gameBoard[i] = 2
+                gameBoard[i - 1] = 0
+            }
+
+            for (var i = 63; i > 56; i -= 2) {
+                gameBoard[i] = 0
+                gameBoard[i - 1] = 2
+            }
+
+            console.log(gameBoard)
+            draw();
+
+
+
         }
 
-        
+
+        function movePiece() {
+
+
+        }
+
+
+
+        function selectPiece(x1,y1) {
+            let userX = x1;
+            let userY = y1;
+            console.log(x1,y1);
+            
+            //if (userX && userY ===)
+            
+            
+            
+        }
+
+
+        function drawPiece(boardPosition) {
+            console.log("Board Position: ", boardPosition);
+            if (boardPosition >= 0 && boardPosition <= 7) {
+                y = 0;
+                console.log("Y: ", y);
+            } else if (boardPosition >= 8 && boardPosition <= 15) {
+                y = 50;
+                console.log("Y: ", y);
+            } else if (boardPosition >= 16 && boardPosition <= 23) {
+                y = 100;
+                console.log("Y: ", y);
+            } else if (boardPosition >= 24 && boardPosition <= 31) {
+                y = 150;
+                console.log("Y: ", y);
+            } else if (boardPosition >= 32 && boardPosition <= 39) {
+                y = 200;
+                console.log("Y: ", y);
+            } else if (boardPosition >= 40 && boardPosition <= 47) {
+                y = 250;
+                console.log("Y: ", y);
+            } else if (boardPosition >= 48 && boardPosition <= 55) {
+                y = 300;
+                console.log("Y: ", y);
+            } else if (boardPosition >= 56 && boardPosition <= 63) {
+                y = 350;
+                console.log("Y: ", y);
+            }
+
+
+            if (xArray0.includes(boardPosition)) {
+                x = 0;
+                console.log("X: ", x);
+            } else if (xArray2.includes(boardPosition)) {
+                x = 50;
+                console.log("X: ", x);
+            } else if (xArray4.includes(boardPosition)) {
+                x = 100;
+                console.log("X: ", x);
+            } else if (xArray6.includes(boardPosition)) {
+                x = 150;
+                console.log("X: ", x);
+            } else if (xArray8.includes(boardPosition)) {
+                x = 200;
+                console.log("X: ", x);
+            } else if (xArray10.includes(boardPosition)) {
+                x = 250;
+                console.log("X: ", x);
+            } else if (xArray12.includes(boardPosition)) {
+                x = 300;
+                console.log("X: ", x);
+            } else if (xArray14.includes(boardPosition)) {
+                x = 350;
+                console.log("X: ", x);
+            }
+
+
+
+            var canvas = document.getElementById('tutorial');
+            if (canvas.getContext) {
+                var ctx = canvas.getContext('2d');
+                if (gameBoard[boardPosition] === 1) {
+                    ctx.drawImage(blackPiece, x, y);
+
+                } else if (gameBoard[boardPosition] === 2) {
+                    ctx.drawImage(redPiece, x, y);
+                }
+            }
+            selectPiece();
+        }
+
+        function getMousePosition(canvas, event) {
+            let rect = canvas.getBoundingClientRect();
+            let x1 = event.clientX - rect.left;
+            let y1 = event.clientY - rect.top;
+            console.log("Coordinate x: " + x1,
+                "Coordinate y: " + y1);
+        }
+
         function draw() {
             var canvas = document.getElementById('tutorial');
             if (canvas.getContext) {
                 var ctx = canvas.getContext('2d');
-                ctx.drawImage(boardImage,0,0);
-                //ctx.fillRect(0, 0, 726, 626);
+                ctx.drawImage(boardImage, 0, 0);
             }
-            //initial board load
-            if (gameState == state.INITIAL) {
-                for (var i = 0; i < redPieces.length; i+=2) {
-                    var x = redPieces[i];
-                    var y = redPieces[i+1];
-                    ctx.drawImage(redPiece,x,y);
-                }
-                for (var i = 0; i < blackPieces.length; i+=2) {
-                    var x = blackPieces[i];
-                    var y = blackPieces[i+1];
-                    ctx.drawImage(blackPiece,x,y);
-                }
+
+            for (let boardPosition = 0; boardPosition < gameBoard.length; boardPosition++) {
+                if (gameBoard[boardPosition] === 1) {
+                    drawPiece(boardPosition);
+                } else if (gameBoard[boardPosition] === 2) {
+                    drawPiece(boardPosition);
+                } else if (gameBoard[boardPosition] === 0) {}
             }
         }
-        
-        
-        
-        window.onload = function() {
-            draw();
-            let canvasElem = document.getElementById("tutorial"); 
-            canvasElem.addEventListener("mousedown", function(evt) { 
-                getMousePosition(canvasElem, evt);
-            });
-        }
+
+            window.onload = function() {
+                initializeBoard();
+                draw();
+                let canvasElem = document.getElementById("tutorial");
+                canvasElem.addEventListener("mousedown", function(evt) {
+                    getMousePosition(canvasElem, evt);
+                });
+            }
+
     </script>
-    <style type="text/css">
-      canvas { border: 1px solid black; }
+    <style>
+        canvas {
+            border: 20px solid black;
+        }
+
     </style>
-  </head>
-  <body>
-    <canvas id="tutorial" width="537" height="538"></canvas>
-  </body>
+</head>
+
+<body>
+    <canvas id="tutorial" width="400" height="400"></canvas>
+</body>
+
 </html>
