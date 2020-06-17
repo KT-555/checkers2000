@@ -100,7 +100,7 @@
 
 
         function movePiece() {
-
+            console.log("test")
 
         }
 
@@ -111,11 +111,9 @@
             let userY = y1;
             console.log(x1,y1);
             
-            //if (userX && userY ===)
             
-            
-            
-        }
+                    movePiece();
+                }
 
 
         function drawPiece(boardPosition) {
@@ -185,15 +183,17 @@
                     ctx.drawImage(redPiece, x, y);
                 }
             }
-            selectPiece();
+            
         }
 
-        function getMousePosition(canvas, event) {
+        function getMouseCoords(canvas, event) {
             let rect = canvas.getBoundingClientRect();
             let x1 = event.clientX - rect.left;
             let y1 = event.clientY - rect.top;
             console.log("Coordinate x: " + x1,
                 "Coordinate y: " + y1);
+            
+           selectPiece(x1,y1); 
         }
 
         function draw() {
@@ -217,7 +217,7 @@
                 draw();
                 let canvasElem = document.getElementById("tutorial");
                 canvasElem.addEventListener("mousedown", function(evt) {
-                    getMousePosition(canvasElem, evt);
+                    getMouseCoords(canvasElem, evt);
                 });
             }
 
